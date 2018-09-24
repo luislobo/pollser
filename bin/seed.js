@@ -1,46 +1,43 @@
 #!/usr/bin/env node
 
-require('mongoose').connect('mongodb://localhost/pollser');
+require('mongoose').connect(process.env.MONGODB_URI)
 
 const topics = [
-    "Should dogs be allowed to fly?",
-    "Should doors be shut at night?",
-    "Should developers use IDEs?",
-    "Should cars have four wheels?",
-    "Should humans be allowed to wear shoes?"
-];
+  'Have you heard of PetroCloud before?',
+  'Have you heard of MongoDB Change Streams?',
+  'Do you work with IOT?',
+  'Are you excited about MongoDB Transactions?',
+  'Did you enjoy this session?'
+]
 
-const Poll = require('../models/poll');
+const Poll = require('../models/poll')
 
 // empty the collection first
 Poll.remove({})
-    .then(() => {
-        let polls = [];
-        for (let i = 0; i < 5; i++) {
-            polls.push({
-                topic: topics[i],
-                choices: [
-                    {
-                        value: "Yes",
-                        votes: Math.round(Math.random() * 20)
-                    },
-                    {
-                        value: "No",
-                        votes: Math.round(Math.random() * 20)
-                    },
-                    {
-                        value: "I really don't care",
-                        votes: Math.round(Math.random() * 20)
-                    }
-                ]
-            });
-        }
-        return Poll.create(polls);
-    })
-    .then(() => {
-        process.exit();
-    })
-    .catch((e) => {
-        console.log(e);
-        process.exit(1);
-    });
+  .then(() => {
+    let polls = []
+    for (let i = 0; i < 5; i++) {
+      polls.push({
+        topic: topics[i],
+        choices: [
+          {
+            value: 'Yes',
+            votes: 0
+          },
+          {
+            value: 'No',
+            votes: 0
+          }
+        ]
+      })
+    }
+    return Poll.create(polls)
+  })
+  .then((res) => {
+    console.log(res)
+    process.exit()
+  })
+  .catch((e) => {
+    console.log(e)
+    process.exit(1)
+  })

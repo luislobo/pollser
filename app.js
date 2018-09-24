@@ -11,7 +11,7 @@ var users = require('./routes/users');
 
 var app = express();
 
-require('mongoose').connect('mongodb://localhost/pollser');
+require('mongoose').connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

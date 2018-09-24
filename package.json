@@ -1,5 +1,5 @@
 {
-  "name": "pollser",
+  "name": "austin-poll",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
     "hbs": "~4.0.1",
-    "mongoose": "^4.13.6",
+    "mongoose": "^5.2.17",
     "morgan": "~1.8.1",
     "pusher": "^1.5.1",
     "serve-favicon": "~2.4.2"
